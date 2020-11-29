@@ -2,6 +2,6 @@
 
 // install project
 
-// build project
+// run project
 
 // test project
