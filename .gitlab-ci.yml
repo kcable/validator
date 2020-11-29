@@ -1,4 +1,6 @@
-image: cypress/included:6.0.0
+image:
+  image: cypress/included:6.0.0
+  entrypoint: [""]
 
 stages:
   - test
