@@ -5,3 +5,5 @@
 // run project - npm start
 
 // test project - cypress run --spec "cypress/integration/{{SPEC}}". {{SPEC}} should be passed in trough gitlab
+
+console.log('Running...')
