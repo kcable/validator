@@ -1,4 +1,4 @@
-image: node:latest
+image: cypress/browsers:chrome69
 
 stages:
   - test
