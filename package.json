@@ -1,0 +1,26 @@
+{
+  "name": "validator",
+  "version": "1.0.0",
+  "description": "Validation for boost tasks",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "cypress": "^6.0.0",
+    "husky": "^4.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/booost/validator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/booost/validator/issues"
+  },
+  "homepage": "https://gitlab.com/booost/validator#readme"
+}
