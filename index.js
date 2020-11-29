@@ -6,12 +6,15 @@ const { exec } = require('child_process');
 
 // run project - npm start
 
-// test project - cypress run --spec "cypress/integration/{{SPEC}}". {{SPEC}} should be passed in trough gitlab
-
-console.log('Running...')
+console.log('Testing...')
 
 const output = exec('npm run test -- --spec "cypress/integration/task-1.js"');
 
 output.stdout.on('data', function(data) {
   console.log(data); 
+});
+
+
+output.stderr.on('data', function(data) {
+  process.exit(1);
 });
