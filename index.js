@@ -10,11 +10,11 @@ console.log('Testing...')
 
 const output = exec('npm run test -- --spec "cypress/integration/task-1.js"');
 
-output.stdout.on('data', function(data) {
+output.stdout.on('data', (data) => {
   console.log(data); 
 });
 
 
-output.stderr.on('data', function(data) {
+output.stderr.on('data', () => {
   process.exit(1);
 });

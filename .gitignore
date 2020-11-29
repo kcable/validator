@@ -91,3 +91,7 @@ sw.*
 
 # Temporary project
 /temp
+
+# Cypress
+/cypress/videos
+/cypress/screenshots
