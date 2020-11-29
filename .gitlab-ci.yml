@@ -1,4 +1,4 @@
-image: cypress/browsers:chrome69
+image: cypress/included
 
 stages:
   - test
