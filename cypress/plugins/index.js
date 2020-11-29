@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+const fs = require('fs');
+const git = require('isomorphic-git');
+
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //
@@ -18,4 +21,15 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+
+  on('task', {
+    gitLog (filename) {
+      return git.log({
+        fs,
+        dir: './',
+        depth: 5,
+        ref: 'master'
+      })
+    }
+  })
 }
