@@ -28,7 +28,7 @@ module.exports = (on, config) => {
         fs,
         dir: './',
         depth: 5,
-        ref: 'dev'
+        ref: 'HEAD'
       })
     }
   })
