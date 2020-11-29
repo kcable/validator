@@ -1,4 +1,4 @@
-image: cypress/included
+image: cypress/included:3.2.0
 
 stages:
   - test
