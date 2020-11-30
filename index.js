@@ -8,6 +8,10 @@ const { exec } = require('child_process');
 
 console.log('Testing...');
 
+if (!process.env.RUN) {
+  process.exit(0);
+}
+
 const output = exec('npm run test -- --spec "cypress/integration/task-1.js"', {
   env: process.env
 });
