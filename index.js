@@ -9,10 +9,7 @@ const { exec } = require('child_process');
 console.log('Testing...');
 
 const output = exec('npm run test -- --spec "cypress/integration/task-1.js"', {
-  env: {
-    ...process.env,
-    CYPRESS_REPO_URL: "https://gitlab.com/mitkodkn/test-repo.git"
-  }
+  env: process.env
 });
 
 output.stdout.on('data', (data) => {
