@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 const fs = require('fs');
+const rmfr = require('rmfr');
+const http = require('isomorphic-git/http/node');
 const git = require('isomorphic-git');
 
 // ***********************************************************
@@ -23,13 +25,28 @@ module.exports = (on, config) => {
   // `config` is the resolved Cypress config
 
   on('task', {
-    gitLog (filename) {
+    gitLog({ dir }) {
       return git.log({
         fs,
-        dir: './',
+        dir,
         depth: 5,
         ref: 'HEAD'
-      })
+      });
+    },
+
+    async gitClone({ url, dir }) {
+      await git.clone({
+        fs,
+        url,
+        dir,
+        http
+      });
+      return true;
+    },
+
+    async rmDir({ dir }) {
+      await rmfr(dir);
+      return true;
     }
   })
 }

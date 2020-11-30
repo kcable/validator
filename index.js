@@ -6,14 +6,18 @@ const { exec } = require('child_process');
 
 // run project - npm start
 
-console.log('Testing...')
+console.log('Testing...');
 
-const output = exec('npm run test -- --spec "cypress/integration/task-1.js"');
-
-output.stdout.on('data', (data) => {
-  console.log(data); 
+const output = exec('npm run test -- --spec "cypress/integration/task-1.js"', {
+  env: {
+    ...process.env,
+    CYPRESS_REPO_URL: "https://gitlab.com/mitkodkn/test-repo.git"
+  }
 });
 
+output.stdout.on('data', (data) => {
+  console.log(data);
+});
 
 output.stderr.on('data', () => {
   process.exit(1);
