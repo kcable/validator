@@ -15,7 +15,7 @@ const taskId = process.env.TASK_ID;
 console.log(`Running tests for task ${taskId}...`);
 
 const output = exec(
-  `npm run test -- --spec "cypress/integration/task-${process.env.TASK_ID}.js`, {
+  `npm run test -- --spec "cypress/integration/task-${taskId}.js`, {
     env: process.env
   }
 );
