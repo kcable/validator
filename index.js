@@ -24,6 +24,7 @@ output.stdout.on('data', (data) => {
   console.log(data);
 });
 
-output.stderr.on('data', () => {
+output.stderr.on('data', (data) => {
+  console.log(data);
   process.exit(1);
 });
