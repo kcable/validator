@@ -18,3 +18,22 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+before(() => {
+  cy.task('gitClone', {
+    url: Cypress.env('REPO_URL'),
+    dir: "./.tmp"
+  })
+    .then((data) => {
+      expect(data).to.be.true;
+    });
+});
+
+after(() => {
+  cy.task('rmDir', {
+    dir: './.tmp'
+  })
+    .then((data) => {
+      expect(data).to.be.true;
+    });
+});

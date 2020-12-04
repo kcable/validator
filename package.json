@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Validation for boost tasks",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@gitbeaker/node": "^25.6.0",
+    "isomorphic-git": "^1.8.0",
+    "rmfr": "^2.0.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
@@ -16,7 +20,7 @@
     }
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cypress run",
     "cypress:open": "cypress open"
   },
   "repository": {

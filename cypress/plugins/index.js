@@ -1,4 +1,9 @@
 /// <reference types="cypress" />
+const fs = require('fs');
+const rmfr = require('rmfr');
+const http = require('isomorphic-git/http/node');
+const git = require('isomorphic-git');
+
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //
@@ -18,4 +23,30 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+
+  on('task', {
+    gitLog({ dir }) {
+      return git.log({
+        fs,
+        dir,
+        depth: 5,
+        ref: 'HEAD'
+      });
+    },
+
+    async gitClone({ url, dir }) {
+      await git.clone({
+        fs,
+        url,
+        dir,
+        http
+      });
+      return true;
+    },
+
+    async rmDir({ dir }) {
+      await rmfr(dir);
+      return true;
+    }
+  })
 }

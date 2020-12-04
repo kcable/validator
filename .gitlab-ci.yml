@@ -1,0 +1,12 @@
+image:
+  name: cypress/included:6.0.0
+  entrypoint: [""]
+
+stages:
+  - test
+
+test:
+  stage: test
+  script:
+    - npm i
+    - node index.js
