@@ -1,5 +1,5 @@
 context('task-1', () => {
-  it('has 4 commits', () => {
+  it('should have at least 1 commit', () => {
     cy.task('gitLog', {
       dir: './.tmp'
     }).then((data) => {
