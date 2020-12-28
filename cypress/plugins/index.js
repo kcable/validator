@@ -3,6 +3,7 @@ const fs = require('fs');
 const rmfr = require('rmfr');
 const http = require('isomorphic-git/http/node');
 const git = require('isomorphic-git');
+const CustomError = require('../support/errors/CustomError');
 
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
@@ -25,13 +26,17 @@ module.exports = (on, config) => {
   // `config` is the resolved Cypress config
 
   on('task', {
-    gitLog({ dir }) {
-      return git.log({
-        fs,
-        dir,
-        depth: 5,
-        ref: 'HEAD'
-      });
+    async gitLog({ dir }) {
+      try {
+        return await git.log({
+          fs,
+          dir,
+          depth: 5,
+          ref: 'HEAD'
+        })
+      } catch (error) {
+        throw new CustomError(CustomError.list.GIT_SHOW_LOG_NO_MASTER, error);
+      }
     },
 
     async gitClone({ url, dir }) {
