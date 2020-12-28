@@ -1,14 +1,18 @@
-const list = require('./list');
+const common = require('./common');
+const Mustache = require('mustache');
 
 class CustomError {
-  constructor(error, original) {
+  constructor(error, original, params) {
     if(!error) return Error(`No error type found. You can add one in 'cypress/support/errors/list.js'.`);
+
+    const issue = Mustache.render(error.issue, params);
+    const tips = error.tips.map(s => `\n- ${Mustache.render(s, params)}`).join('')
 
     return Error(`
 ooo
 ----------------------------------------------------------------------------
-Грешка: ${error.issue}
-Препоръки: ${error.tips.map(s => `\n- ${s}`).join('') }
+Грешка: ${issue}
+Препоръки: ${tips}
 Оригинал: ${original}
 ----------------------------------------------------------------------------
 `);
@@ -16,6 +20,6 @@ ooo
   }
 }
 
-CustomError.list = list;
+CustomError.common = common;
 
 module.exports = CustomError;

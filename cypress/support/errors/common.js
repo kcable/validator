@@ -1,0 +1,10 @@
+module.exports = {
+  GIT_SHOW_LOG_NO_REF: {
+    issue: 'Repository-то изглежда, че няма бранч {{ref}}.',
+    tips: [
+      'Увери се, че си commit-нал и push-нал промените си',
+      'Ако си създал нов бранч увери се, че си го push-нал. Може да провериш дали съществува в Gitlab или Github.',
+      'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2'
+    ]
+  }
+};

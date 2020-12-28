@@ -1,7 +1,8 @@
 const CustomError = require("../support/errors/CustomError");
 
-context('task-1', () => {
-  it('should have at least 1 commit', () => {
+context(`task-2`, () => {
+
+  it(`should have a first commit in it's git log`, () => {
     cy.task('gitLog').then((data) => {
       cy.log('Git Log', data);
 
@@ -15,6 +16,12 @@ context('task-1', () => {
           ] 
         })
       ).to.exist;
+    });
+  });
+
+  it(`should have a first commit with a SHA of 7981f4d68785045b36bea101686240f6d4245070`, () => {
+    cy.task('gitLog').then((data) => {
+      cy.log('Git Log', data);
 
       expect(
         data[0].oid,
@@ -26,6 +33,7 @@ context('task-1', () => {
           ] 
         })
       ).to.equal('7981f4d68785045b36bea101686240f6d4245070');
-    })
+    });
   });
+  
 });

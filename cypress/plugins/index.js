@@ -35,7 +35,19 @@ module.exports = (on, config) => {
           ref
         })
       } catch (error) {
-        throw new CustomError(CustomError.list.GIT_SHOW_LOG_NO_MASTER, error);
+        throw new CustomError(CustomError.common.GIT_SHOW_LOG_NO_REF, error, { ref });
+      }
+    },
+
+    async gitListFiles({ dir = './.tmp', ref = 'HEAD' } = {}) {
+      try {
+        return await git.listFiles({
+          fs,
+          dir,
+          ref
+        })
+      } catch (error) {
+        throw new CustomError(CustomError.common.GIT_SHOW_LOG_NO_REF, error, { ref });
       }
     },
 
