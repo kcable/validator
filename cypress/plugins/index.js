@@ -26,13 +26,13 @@ module.exports = (on, config) => {
   // `config` is the resolved Cypress config
 
   on('task', {
-    async gitLog({ dir }) {
+    async gitLog({ dir = './.tmp', depth = 100, ref = 'HEAD' } = {}) {
       try {
         return await git.log({
           fs,
           dir,
-          depth: 5,
-          ref: 'HEAD'
+          depth,
+          ref
         })
       } catch (error) {
         throw new CustomError(CustomError.list.GIT_SHOW_LOG_NO_MASTER, error);
