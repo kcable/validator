@@ -81,6 +81,15 @@ module.exports = (on, config) => {
       }
     },
 
+    async readJSONFileSync({ dir = './.tmp', file } = {}) {
+      try {
+        const content = fs.readFileSync(`${dir}/${file}`);
+        return JSON.parse(content.toString());
+      } catch (error) {
+        throw new CustomError(CustomError.common.FILE_NOT_JSON, error, { file, dir });
+      }
+    },
+
     async rmDir({ dir }) {
       await rmfr(dir);
       return true;
