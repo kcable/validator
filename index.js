@@ -5,11 +5,12 @@ if (!process.env.RUN) {
 }
 
 const taskId = process.env.TASK_ID;
+const headed = process.env.HEADED ? '--headed' : '';
 
 console.log(`Running tests for task ${taskId}...`);
 
 const output = exec(
-  `npm run test -- --spec "cypress/integration/task-${taskId}.js"`, {
+  `npm run test -- ${headed} --spec "cypress/integration/task-${taskId}.js"`, {
     env: process.env
   }
 );
