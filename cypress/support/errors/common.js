@@ -6,5 +6,17 @@ module.exports = {
       'Ако си създал нов бранч увери се, че си го push-нал. Може да провериш дали съществува в Gitlab или Github.',
       'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2'
     ]
+  },
+  GIT_LIST_FILES: {
+    issue: 'Не успяваме да достъпим файловете на repo-то',
+    tips: [
+      'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2'
+    ]
+  },
+  GIT_LIST_TAGS: {
+    issue: 'Не успяваме да достъпим tag-овете на repo-то',
+    tips: [
+      'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2'
+    ]
   }
 };

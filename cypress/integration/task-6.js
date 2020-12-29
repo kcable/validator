@@ -2,7 +2,7 @@ const CustomError = require("../support/errors/CustomError");
 
 context(`task-6`, () => {
   
-  it(`should have a first commit in it's git log`, () => {
+  it(`should have a test.html file in the project root`, () => {
     cy.task('gitListFiles', { ref: 'origin/feature-test' }).then((data) => {
       cy.log('Git Files', data);
 
