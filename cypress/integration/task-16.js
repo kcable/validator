@@ -1,6 +1,6 @@
 const CustomError = require("../support/errors/CustomError");
 
-context(`task-2`, () => {
+context(`task-16`, () => {
 
   it(`should have a first commit with a SHA of 2a0bd54ecbbcdc88a4eae7ed09b1b3aea7d57de4`, () => {
     cy.task('gitLog', { ref: 'origin/dev' }).then((data) => {

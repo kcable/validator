@@ -19,6 +19,12 @@ module.exports = {
       'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2'
     ]
   },
+  GIT_LIST_BRANCHES: {
+    issue: 'Не успяваме да достъпим branch-овете на repo-то',
+    tips: [
+      'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2'
+    ]
+  },
   FILE_NOT_FOUND: {
     issue: 'Не успяваме да намерим файла {{file}} в {{dir}}.',
     tips: [

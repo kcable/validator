@@ -62,6 +62,18 @@ module.exports = (on, config) => {
       }
     },
 
+    async gitListBranches({ dir = './.tmp', remote = 'origin' } = {}) {
+      try {
+        return await git.listBranches({
+          fs,
+          dir,
+          remote
+        })
+      } catch (error) {
+        throw new CustomError(CustomError.common.GIT_LIST_TAGS, error);
+      }
+    },
+
     async gitClone({ url, dir }) {
       await git.clone({
         fs,
