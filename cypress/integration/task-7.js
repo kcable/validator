@@ -34,7 +34,7 @@ context(`task-7`, () => {
   
   it(`should have a tag with a value of v1.0.0`, () => {
     cy.task('gitListTags').then((data) => {
-      cy.log('Git Files', data);
+      cy.log('Git Tags', data);
 
       expect(
         data,
