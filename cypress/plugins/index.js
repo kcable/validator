@@ -58,7 +58,7 @@ module.exports = (on, config) => {
           dir,
         })
       } catch (error) {
-        throw new CustomError(CustomError.common.GIT_LIST_TAGS, error, { ref });
+        throw new CustomError(CustomError.common.GIT_LIST_TAGS, error);
       }
     },
 
@@ -70,6 +70,15 @@ module.exports = (on, config) => {
         http
       });
       return true;
+    },
+
+    async readFileSync({ dir = './.tmp', file } = {}) {
+      try {
+        const content = fs.readFileSync(`${dir}/${file}`);
+        return content.toString();
+      } catch (error) {
+        throw new CustomError(CustomError.common.FILE_NOT_FOUND, error, { file, dir });
+      }
     },
 
     async rmDir({ dir }) {
