@@ -28,7 +28,7 @@ const getPixiElementByName = (searchObject, element) => {
  * @param {Function} error
  * @returns {Promise}
  */
-const searchUntil = (callback, error = 'Could not find PIXI element') => {
+const tryUntil = (callback, error = 'Could not find PIXI element') => {
   return new Promise((resolve, reject) => {
     const timeLimit = Cypress.config().defaultCommandTimeout;
     let result = null,
@@ -48,24 +48,22 @@ const searchUntil = (callback, error = 'Could not find PIXI element') => {
   });
 };
 
-Cypress.Commands.add('getPixiApp', () => {
-  cy.window().then((win) => {
-    cy.wrap(win).its('__PIXI_APP').then(__PIXI_APP => __PIXI_APP);
-  });
+Cypress.Commands.add('getPixiApp', (error = 'Could not find PIXI app. Please make sure __PIXI_APP is exported') => {
+  cy.window().then((win) => tryUntil(() => win['__PIXI_APP'], error));
 });
 
-Cypress.Commands.add('getPixiStage', () => {
-  cy.getPixiApp().its('stage');
+Cypress.Commands.add('getPixiStage', (error = 'Could not find PIXI stage') => {
+  cy.getPixiApp().then((app) => tryUntil(() => app.stage, error));
 });
 
 Cypress.Commands.add('getPixiElementByName', {
   prevSubject: true 
-}, (searchObject, element, error) => searchUntil(() => getPixiElementByName(searchObject, element), error));
+}, (searchObject, element, error) => tryUntil(() => getPixiElementByName(searchObject, element), error));
 
 Cypress.Commands.add('getPixiChildAt', {
   prevSubject: true
 }, (searchObject, index, error) => {
-  return searchUntil(() => {
+  return tryUntil(() => {
     return searchObject.children[index];
   }, error);
 });
@@ -73,7 +71,7 @@ Cypress.Commands.add('getPixiChildAt', {
 Cypress.Commands.add('getPixiElementByPath', {
   prevSubject: true
 }, (searchObject, path, error) => {
-  return searchUntil(() => {
+  return tryUntil(() => {
     return objectPath.get(searchObject, path);
   }, error);
 });
