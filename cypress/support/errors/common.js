@@ -25,6 +25,14 @@ module.exports = {
       'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2'
     ]
   },
+  GIT_CHECKOUT: {
+    issue: 'Не успяваме да превключим на бранч {{ref}}',
+    tips: [
+      'Увери се, че бранча съществува',
+      'Увери се, че си commit-нал и push-нал промените си',
+      'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2',
+    ]
+  },
   FILE_NOT_FOUND: {
     issue: 'Не успяваме да намерим файла {{file}} в {{dir}}.',
     tips: [
