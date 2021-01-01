@@ -6,6 +6,7 @@ const rmfr = require('rmfr');
 const CustomError = require('./cypress/support/errors/CustomError');
 const exec = util.promisify(require('child_process').exec);
 const execCb = require('child_process').exec;
+const waitOn = require('wait-on');
 
 if (!process.env.RUN) {
   process.exit(0);
@@ -19,13 +20,9 @@ const tempDir = `./.tmp`;
 
 console.log(`Initiating tests for task ${taskId}...`);
 
-// Clone 
-// Install
-// Run
-// Test 
-
 (async () => {
   try {
+    console.log(`Cleaning up temp repository ${tempDir}...`);
     await rmfr(tempDir);
 
     console.log(`Cloning repository ${repoUrl}...`);
@@ -61,7 +58,48 @@ console.log(`Initiating tests for task ${taskId}...`);
       ]
     }, error);
   }
+
+  // If the project has a start script run it and wait for the dev server to be started
+  const package = require(`${tempDir}/package.json`);
+  if(package.scripts.start) {
+    try {
+      console.log(`Starting dev server ${repoUrl}...`);
   
+      const { stdout, stderr } = exec('npm start', { cwd: tempDir });
+      console.log('stdout:', stdout);
+      console.log('stderr:', stderr);
+    } catch (error) {
+      throw new CustomError({
+        issue: `Не успяхме да изпълним "npm install" на repository-то`,
+        tips: [
+          'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2',
+          'Увери се, че съществува package.json',
+          'Увери се, че съществува package-lock.json',
+        ]
+      }, error);
+    }
+
+    try {
+      console.log(`Waiting for dev server to start ${repoUrl}...`);
+  
+      await waitOn({
+        resources: [
+          'http://localhost:8080',
+        ]
+      });
+    } catch (error) {
+      throw new CustomError({
+        issue: `Не успяхме да изпълним "npm install" на repository-то`,
+        tips: [
+          'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2',
+          'Увери се, че съществува package.json',
+          'Увери се, че съществува package-lock.json',
+        ]
+      }, error);
+    }
+  }
+  
+  console.log(`Starting to run tests ${repoUrl}...`);
   // The Cypress task is a bit weird that's why we're using outside of primises 
   const cmd = open ? `npm run cypress:open` : `npm run test -- ${headed} --spec "cypress/integration/task-${taskId}.js"`;
   const output = execCb(cmd, { env: process.env });
@@ -75,4 +113,3 @@ console.log(`Initiating tests for task ${taskId}...`);
     process.exit(1);
   });
 })();
-
