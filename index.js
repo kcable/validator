@@ -11,6 +11,7 @@ if (!process.env.RUN) {
   process.exit(0);
 }
 
+const open = process.env.OPEN;
 const taskId = process.env.TASK_ID;
 const headed = process.env.HEADED ? '--headed' : '';
 const repoUrl = process.env.REPO_URL;
@@ -62,11 +63,8 @@ console.log(`Initiating tests for task ${taskId}...`);
   }
   
   // The Cypress task is a bit weird that's why we're using outside of primises 
-  const output = execCb(
-    `npm run test -- ${headed} --spec "cypress/integration/task-${taskId}.js"`, {
-      env: process.env
-    }
-  );
+  const cmd = open ? `npm run cypress:open` : `npm run test -- ${headed} --spec "cypress/integration/task-${taskId}.js"`;
+  const output = execCb(cmd, { env: process.env });
   
   output.stdout.on('data', (data) => {
     console.log(data);
