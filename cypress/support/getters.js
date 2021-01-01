@@ -24,10 +24,11 @@ const getPixiElementByName = (searchObject, element) => {
 
 /**
  * Simulates cypress' retry functionality for custom cy. methods
- * @param callback
+ * @param {Function} callback
+ * @param {Function} error
  * @returns {Promise}
  */
-const searchUntil = (callback) => {
+const searchUntil = (callback, error = 'Could not find PIXI element') => {
   return new Promise((resolve, reject) => {
     const timeLimit = Cypress.config().defaultCommandTimeout;
     let result = null,
@@ -40,7 +41,9 @@ const searchUntil = (callback) => {
       } else {
         counter += 100;
       }
-      if (counter >= timeLimit) resolve(result);
+      if (counter >= timeLimit) {
+        result ? resolve() : reject(error);
+      }
     }, 100);
   });
 };
@@ -56,21 +59,21 @@ Cypress.Commands.add('getPixiStage', () => {
 });
 
 Cypress.Commands.add('getPixiElementByName', {
-  prevSubject: true
-}, (searchObject, element) => searchUntil(() => getPixiElementByName(searchObject, element)));
+  prevSubject: true 
+}, (searchObject, element, error) => searchUntil(() => getPixiElementByName(searchObject, element), error));
 
 Cypress.Commands.add('getPixiChildAt', {
   prevSubject: true
-}, (searchObject, index) => {
+}, (searchObject, index, error) => {
   return searchUntil(() => {
     return searchObject.children[index];
-  });
+  }, error);
 });
 
 Cypress.Commands.add('getPixiElementByPath', {
   prevSubject: true
-}, (searchObject, path) => {
+}, (searchObject, path, error) => {
   return searchUntil(() => {
     return objectPath.get(searchObject, path);
-  });
+  }, error);
 });
