@@ -7,6 +7,7 @@
     "@gitbeaker/node": "^25.6.0",
     "isomorphic-git": "^1.8.0",
     "mustache": "^4.1.0",
+    "object-path": "^0.11.5",
     "rmfr": "^2.0.0"
   },
   "devDependencies": {
