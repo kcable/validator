@@ -281,7 +281,58 @@ context('task-20', () => {
     });
   });
 
+  it(`should have a Pokeball with a static events property`, () => {
+    const element = 'pokeball';
+    cy.getPixiStage().getPixiElementByName(
+      element,
+      new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+    ).then((element) => {
+      expect(element.constructor.events).to.be.an('object');
+    });
+  });
+
+  it(`should have a Pokeball with a static events property which contains OPEN_START`, () => {
+    const element = 'pokeball';
+    cy.getPixiStage().getPixiElementByName(
+      element,
+      new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+    ).then((element) => {
+      expect(element.constructor.events.OPEN_START).to.be.a('string');
+    });
+  });
+
+  it(`should have a Pokeball with a static events property which contains OPEN_END`, () => {
+    const element = 'pokeball';
+    cy.getPixiStage().getPixiElementByName(
+      element,
+      new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+    ).then((element) => {
+      expect(element.constructor.events.OPEN_END).to.be.a('string');
+    });
+  });
+
+  it(`should have a Pokeball with a static events property which contains CLOSE_START`, () => {
+    const element = 'pokeball';
+    cy.getPixiStage().getPixiElementByName(
+      element,
+      new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+    ).then((element) => {
+      expect(element.constructor.events.CLOSE_START).to.be.a('string');
+    });
+  });
+
+  it(`should have a Pokeball with a static events property which contains CLOSE_END`, () => {
+    const element = 'pokeball';
+    cy.getPixiStage().getPixiElementByName(
+      element,
+      new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+    ).then((element) => {
+      expect(element.constructor.events.CLOSE_END).to.be.a('string');
+    });
+  });
+
   it(`should have a Button which when clicked shuffles the text property of Pokeball`, { retries: 5 }, () => {
+    cy.visit('/');
     cy.getPixiStage().getPixiElementByName(
       'button',
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'button' })  
@@ -296,14 +347,12 @@ context('task-20', () => {
         cy.wait(500).then(() => {
           expect(pokeball.text.text).to.not.eq(value)
         });
-
-        //Wait for the animation to end before proceeding to the next test
-        cy.getPixiStage().getPixiElementByName('pokeball').pixiOn('close_end');
       });
     });
   });
 
-  it(`should have a Button which when clicked shuffles the text property of Pokeball`, () => {
+  it(`should have a Button which when clicked the 'open' method of Pokeball is called`, () => {
+    cy.visit('/');
     cy.getPixiStage().getPixiElementByName(
       'button',
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'button' })  
@@ -314,7 +363,58 @@ context('task-20', () => {
       ).then((pokeball) => {
         cy.spy(pokeball, 'open');
         button.emit('click');
-        expect(pokeball.open).to.be.called
+        expect(pokeball.open).to.be.called;
+      });
+    });
+  });
+
+  it(`should have a Pokeball shuffle which does not exceed more than 7 seconds`, () => {
+    cy.visit('/');
+    cy.getPixiStage().getPixiElementByName(
+      'button',
+      new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'button' })  
+    ).then((button) => {
+      cy.getPixiStage().getPixiElementByName(
+        'pokeball',
+        new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'pokeball' })  
+      ).then((pokeball) => {
+        button.emit('click');
+        cy.wait(7000).then(() => {
+          expect(pokeball.isOpened).to.be.false
+        });
+      });
+    });
+  });
+
+  it(`should have a Button which is hidden on click`, () => {
+    cy.visit('/');
+    cy.getPixiStage().getPixiElementByName(
+      'button',
+      new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'button' })  
+    ).then((button) => {
+      button.emit('click');
+      cy.wait(1000).then(() => {
+        expect(button.alpha).to.eq(0);
+      });
+    });
+  });
+
+  it(`should have a Button which reapears after the shuffle animation`, () => {
+    cy.visit('/');
+    cy.getPixiStage().getPixiElementByName(
+      'button',
+      new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'button' })  
+    ).then((button) => {
+      cy.getPixiStage().getPixiElementByName(
+        'pokeball',
+        new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'pokeball' })  
+      ).then((pokeball) => {
+        button.emit('click');
+        cy.log(pokeball);
+        cy.wrap(pokeball).pixiOn('close_end');
+        cy.wait(1000).then(() => {
+          expect(button.alpha).to.eq(1);
+        });
       });
     });
   });
