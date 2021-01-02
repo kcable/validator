@@ -48,6 +48,10 @@ const tryUntil = (callback, error = 'Could not find PIXI element') => {
   });
 };
 
+Cypress.Commands.add('getPixi', (error = 'Could not find PIXI module. Please make sure PIXI is exported') => {
+  cy.window().then((win) => tryUntil(() => win['PIXI'], error));
+});
+
 Cypress.Commands.add('getPixiApp', (error = 'Could not find PIXI app. Please make sure __PIXI_APP is exported') => {
   cy.window().then((win) => tryUntil(() => win['__PIXI_APP'], error));
 });
