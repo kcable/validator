@@ -41,6 +41,20 @@ module.exports = {
       'Увери се, че си commit-нал и push-нал промените си',
     ]
   },
+  PIXI_STAGE_NOT_FOUND: {
+    issue: 'Не успяваме да намерим PIXI сцената',
+    tips: [
+      'Увери се, че няма syntax error-и в конзолата',
+      'Увери се, че си commit-нал и push-нал промените си',
+    ]
+  },
+  PIXI_APP_NOT_FOUND: {
+    issue: 'Не успяваме да намерим PIXI сцената',
+    tips: [
+      'Увери се, че няма syntax error-и в конзолата',
+      'Увери се, че си commit-нал и push-нал промените си',
+    ]
+  },
   FILE_NOT_FOUND: {
     issue: 'Не успяваме да намерим файла {{file}} в {{dir}}.',
     tips: [
