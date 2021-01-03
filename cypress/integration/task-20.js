@@ -287,7 +287,16 @@ context('task-20', () => {
       element,
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
     ).then((element) => {
-      expect(element.constructor.events).to.be.an('object');
+      const error = new CustomError({ 
+        issue: `Pokeball няма статичен getter .events`, 
+        tips: [
+          `Увери се, че си добавил статичен getter (static get events() { ... })`,
+          `Увери се, че си добавил event property-то на класа Pokeball`,
+          `Увери се, че event-ите връщат обект (static get events() { return { OPEN_START: 'open_start' } })`,
+        ] 
+      });
+
+      expect(element.constructor.events, error).to.be.an('object');
     });
   });
 
@@ -297,7 +306,16 @@ context('task-20', () => {
       element,
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
     ).then((element) => {
-      expect(element.constructor.events.OPEN_START).to.be.a('string');
+      const error = new CustomError({ 
+        issue: `Pokeball няма event OPEN_START`, 
+        tips: [
+          `Увери се, че си добавил статичен getter (static get events() { ... })`,
+          `Увери се, че си добавил event property-то на класа Pokeball`,
+          `Увери се, че event-ите връщат обект в, който е дефиниран OPEN_START (static get events() { return { OPEN_START: 'open_start' } })`,
+        ] 
+      });
+
+      expect(element.constructor.events.OPEN_START, error).to.be.a('string');
     });
   });
 
@@ -307,7 +325,16 @@ context('task-20', () => {
       element,
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
     ).then((element) => {
-      expect(element.constructor.events.OPEN_END).to.be.a('string');
+      const error = new CustomError({ 
+        issue: `Pokeball няма event OPEN_END`, 
+        tips: [
+          `Увери се, че си добавил статичен getter (static get events() { ... })`,
+          `Увери се, че си добавил event property-то на класа Pokeball`,
+          `Увери се, че event-ите връщат обект в, който е дефиниран OPEN_END (static get events() { return { OPEN_END: 'open_end' } })`,
+        ] 
+      });
+
+      expect(element.constructor.events.OPEN_END, error).to.be.a('string');
     });
   });
 
@@ -317,7 +344,16 @@ context('task-20', () => {
       element,
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
     ).then((element) => {
-      expect(element.constructor.events.CLOSE_START).to.be.a('string');
+      const error = new CustomError({ 
+        issue: `Pokeball няма event CLOSE_START`, 
+        tips: [
+          `Увери се, че си добавил статичен getter (static get events() { ... })`,
+          `Увери се, че си добавил event property-то на класа Pokeball`,
+          `Увери се, че event-ите връщат обект в, който е дефиниран CLOSE_START (static get events() { return { CLOSE_START: 'close_start' } })`,
+        ] 
+      });
+
+      expect(element.constructor.events.CLOSE_START, error).to.be.a('string');
     });
   });
 
@@ -327,7 +363,16 @@ context('task-20', () => {
       element,
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
     ).then((element) => {
-      expect(element.constructor.events.CLOSE_END).to.be.a('string');
+      const error = new CustomError({ 
+        issue: `Pokeball няма event CLOSE_END`, 
+        tips: [
+          `Увери се, че си добавил статичен getter (static get events() { ... })`,
+          `Увери се, че си добавил event property-то на класа Pokeball`,
+          `Увери се, че event-ите връщат обект в, който е дефиниран CLOSE_END (static get events() { return { CLOSE_END: 'close_end' } })`,
+        ] 
+      });
+
+      expect(element.constructor.events.CLOSE_END, error).to.be.a('string');
     });
   });
 
@@ -341,11 +386,18 @@ context('task-20', () => {
         'pokeball',
         new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'pokeball' })  
       ).then((pokeball) => {
+        const error = new CustomError({ 
+          issue: `text-a на Pokeball класа не се променя (shuffle-ва)`, 
+          tips: [
+            `Увери се, че се променя стойноста на текста (.text) поне 50 пъти`,
+          ] 
+        });
+
         let value = pokeball.text.text;
         button.emit('click');
         
         cy.wait(500).then(() => {
-          expect(pokeball.text.text).to.not.eq(value)
+          expect(pokeball.text.text, error).to.not.eq(value)
         });
       });
     });
@@ -361,9 +413,17 @@ context('task-20', () => {
         'pokeball',
         new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'pokeball' })  
       ).then((pokeball) => {
+        const error = new CustomError({ 
+          issue: `Не се извика 'open' метода на Pokeball след click`, 
+          tips: [
+            `Увери се, че метода, който отваря Pokeball и активира shuffle-a се казва 'open'`,
+            `Увери се, че метода 'open' е дефиниран в класа`,
+          ] 
+        });
+
         cy.spy(pokeball, 'open');
         button.emit('click');
-        expect(pokeball.open).to.be.called;
+        expect(pokeball.open, error).to.be.called;
       });
     });
   });
@@ -378,9 +438,17 @@ context('task-20', () => {
         'pokeball',
         new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'pokeball' })  
       ).then((pokeball) => {
+        const error = new CustomError({ 
+          issue: `Pokeball остана отворен повече от 7 секунди`, 
+          tips: [
+            `Увери се, че shuffle анимацията ти никога не надвишава 7 секунди`,
+            `Увери се, че променяш isOpened property-то на Pokeball класа след като се затвори pokeball`,
+          ] 
+        });
+
         button.emit('click');
         cy.wait(7000).then(() => {
-          expect(pokeball.isOpened).to.be.false
+          expect(pokeball.isOpened, error).to.be.false
         });
       });
     });
@@ -392,9 +460,18 @@ context('task-20', () => {
       'button',
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'button' })  
     ).then((button) => {
+      const error = new CustomError({ 
+        issue: `Бутона не изглежда да се скрива след клик`, 
+        tips: [
+          `Увери се, че скриваш бутона използвайки alpha property-то`,
+          `Увери се, че анимацията на скриване на бутона не надвишава 1 секунда`,
+          `Увери се, че променяш alpha property-то на бутона директно не отделно на text-a и shape-a`,
+        ] 
+      });
+
       button.emit('click');
       cy.wait(1000).then(() => {
-        expect(button.alpha).to.eq(0);
+        expect(button.alpha, error).to.eq(0);
       });
     });
   });
@@ -409,11 +486,20 @@ context('task-20', () => {
         'pokeball',
         new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'pokeball' })  
       ).then((pokeball) => {
+        const error = new CustomError({ 
+          issue: `Бутона не изглежда да се показва след като Pokeball се е затворил`, 
+          tips: [
+            `Увери се, че показваш бутона използвайки alpha property-то`,
+            `Увери се, че анимацията показване на бутона не надвишава 1 секунда`,
+            `Увери се, че променяш alpha property-то на бутона директно не отделно на text-a и shape-a`,
+          ] 
+        });
+
         button.emit('click');
         cy.log(pokeball);
         cy.wrap(pokeball).pixiOn('close_end');
         cy.wait(1000).then(() => {
-          expect(button.alpha).to.eq(1);
+          expect(button.alpha, error).to.eq(1);
         });
       });
     });
