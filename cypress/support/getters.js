@@ -83,3 +83,11 @@ Cypress.Commands.add('getPixiElementByPath', {
     return objectPath.get(searchObject, path);
   }, error);
 });
+
+Cypress.Commands.add('getGsap', (error = 'Could not find GSAP module. Please make sure GSAP is exported') => {
+  cy.window().then((win) => tryUntil(() => win['GSAP'], error));
+});
+
+Cypress.Commands.add('getGsapApp', (error = 'Could not find GSAP app. Please make sure __GSAP_APP is exported') => {
+  cy.window().then((win) => tryUntil(() => win['__GSAP_APP'], error));
+});
