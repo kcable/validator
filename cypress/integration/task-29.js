@@ -28,7 +28,7 @@ context('task-29', () => {
       expect(data, new CustomError({
         issue: 'StarWarsUniverse.js не е es6 class',
         tips: [
-          'Усерви се, че използваш es6 синтаксиса за създаване на класове',
+          'Увери се, че използваш es6 синтаксиса за създаване на класове',
           'Увери се, че класа ти се казва StarWarsUniverse'
         ]
       })).to.include('export default class StarWarsUniverse');
@@ -40,7 +40,7 @@ context('task-29', () => {
       expect(data, new CustomError({
         issue: 'Entity.js не е es6 class',
         tips: [
-          'Усерви се, че използваш es6 синтаксиса за създаване на класове',
+          'Увери се, че използваш es6 синтаксиса за създаване на класове',
           'Увери се, че класа ти се казва Entity'
         ]
       })).to.include('export default class Entity');
@@ -109,10 +109,9 @@ context('task-29', () => {
       cy.wait(500).then(() => {
         cy.log(app.data.universe);
         expect(app.data.universe.entities.length, new CustomError({
-          issue: `StarWarsUniverse.entities трябва да е масив'`,
+          issue: `StarWarsUniverse.entities трябва да е масив с шест елемента'`,
           tips: [
             `Увери се, че в StarWarsUniverse.entities са добавени всички елементи, fetch-нати от Root resource-a на API-то`,
-            `Увери се, че data-та в init метода на Application.js се сетва, преди да се emit-не евента APP_READY`
           ]
         })).to.eq(6);
       });
@@ -127,7 +126,7 @@ context('task-29', () => {
       cy.wait(500).then(() => {
         cy.log(app.data.universe);
         expect(app.data.universe.entities[0].hasOwnProperty('name'), new CustomError({
-          issue: `StarWarsUniverse.entities трябва да е масив'`,
+          issue: `Класът Entity трябва да има property name`,
           tips: [
             `Увери се, че всяко Entity в StarWarsUniverse.entities има property name`,
             `Увери се, че data-та в init метода на Application.js се сетва, преди да се emit-не евента APP_READY`
@@ -145,9 +144,9 @@ context('task-29', () => {
       cy.wait(500).then(() => {
         cy.log(app.data.universe);
         expect(app.data.universe.entities[0].hasOwnProperty('data'), new CustomError({
-          issue: `StarWarsUniverse.entities трябва да е масив'`,
+          issue: `Класът Entity трябва да има property data'`,
           tips: [
-            `Увери се, че всяко Entity в StarWarsUniverse.entities има property data`,
+            `Увери се, че всеки елемент в StarWarsUniverse.entities има property data`,
             `Увери се, че data-та в init метода на Application.js се сетва, преди да се emit-не евента APP_READY`
           ]
         })).to.be.true
