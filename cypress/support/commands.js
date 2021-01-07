@@ -5,7 +5,7 @@ Cypress.Commands.add('pixiClick', {
   return element; // return for chaining purposes
 });
 
-Cypress.Commands.add('pixiOn', {
+Cypress.Commands.add('onEvent', {
   prevSubject: true
 }, (element, event, callback) => {
   return new Promise((resolve) => {
@@ -13,7 +13,7 @@ Cypress.Commands.add('pixiOn', {
       if(callback && callback(...args) === true) {
         resolve(element);
       } else if(callback && !callback(...args)) {
-        console.warn(`pixiOn: callback is false; args:`, args);
+        console.warn(`onEvent: callback is false; args:`, args);
       } else if(!callback) {
         resolve(element);
       }

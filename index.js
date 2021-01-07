@@ -15,6 +15,7 @@ if (!env.RUN) process.exit(0);
 
 (async () => {
   console.log(`Initiating tests for task ${taskId}...`);
+  console.log(` DIRECTORY: ${dir}`);
 
   await clone({ dir, url });
   await install({ dir });
