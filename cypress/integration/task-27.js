@@ -48,7 +48,7 @@ context('task-27', () => {
       cy.wait(500).then(() => {
         cy.log(app.data);
         expect(Array.isArray(app.data.planets), new CustomError({
-          issue: `Data-та на Application-a няма property planets или property-то не е масив`,
+          issue: `Data-та на Application.data.planets property-то не е масив`,
           tips: [
             `Увери се, че в Application.js е сетнато planets property на data-та, което е масив.`
           ]
