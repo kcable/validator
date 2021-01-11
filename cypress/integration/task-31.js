@@ -207,7 +207,7 @@ context('task-31', () => {
       });
   });
 
-  it('should have species instances in StarWarsUniverse.species, with a name property, whith a classification property', () => {
+  it('should have species instances in StarWarsUniverse.species, with a classification property', () => {
     cy.visit('/');
     cy.getJsApp().then(app => {
       cy.wrap(app.data.universe).onEvent('max_species_reached');

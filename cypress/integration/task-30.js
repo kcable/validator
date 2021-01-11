@@ -82,7 +82,7 @@ context('task-30', () => {
     });
   });
 
-  it('should have a StarWarsUniverse.js which is an es6 class', () => {
+  it('should have a StarWarsUniverse.js have _validateData method', () => {
     cy.task('readFileSync', { file: 'src/app/custom/StarWarsUniverse.js'}).then((data) => {
       expect(data, new CustomError({
         issue: 'StarWarsUniverse.js няма метод _validateData',
@@ -184,7 +184,7 @@ context('task-30', () => {
         expect(Array.isArray(app.data.universe.starships), new CustomError({
           issue: `StarWarsUniverse.starships трябва да е масив'`,
           tips: [
-            `Увери се, че в StarWarsUniverse класа се сетва property estarships, което е масив`,
+            `Увери се, че в StarWarsUniverse класа се сетва property e starships, което е масив`,
             `Увери се, че data-та в init метода на Application.js се сетва, преди да се emit-не евента APP_READY`
           ]
         })).to.be.true;
