@@ -7,7 +7,9 @@
     "@gitbeaker/node": "^25.6.0",
     "isomorphic-git": "^1.8.0",
     "mustache": "^4.1.0",
-    "rmfr": "^2.0.0"
+    "object-path": "^0.11.5",
+    "rmfr": "^2.0.0",
+    "wait-on": "^5.2.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",

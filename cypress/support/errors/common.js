@@ -25,6 +25,36 @@ module.exports = {
       'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2'
     ]
   },
+  GIT_CHECKOUT: {
+    issue: 'Не успяваме да превключим на бранч {{ref}}',
+    tips: [
+      'Увери се, че бранча съществува',
+      'Увери се, че си commit-нал и push-нал промените си',
+      'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2',
+    ]
+  },
+  PIXI_ELEMENT_NOT_FOUND: {
+    issue: 'Не успяваме да намерим елемента "{{element}}"',
+    tips: [
+      'Увери се, че си сложим "name" property на елемента',
+      'Увери се, че елемента е добавен на сцената',
+      'Увери се, че си commit-нал и push-нал промените си',
+    ]
+  },
+  PIXI_STAGE_NOT_FOUND: {
+    issue: 'Не успяваме да намерим PIXI сцената',
+    tips: [
+      'Увери се, че няма syntax error-и в конзолата',
+      'Увери се, че си commit-нал и push-нал промените си',
+    ]
+  },
+  PIXI_APP_NOT_FOUND: {
+    issue: 'Не успяваме да намерим PIXI сцената',
+    tips: [
+      'Увери се, че няма syntax error-и в конзолата',
+      'Увери се, че си commit-нал и push-нал промените си',
+    ]
+  },
   FILE_NOT_FOUND: {
     issue: 'Не успяваме да намерим файла {{file}} в {{dir}}.',
     tips: [
