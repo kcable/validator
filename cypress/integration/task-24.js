@@ -1,15 +1,5 @@
 const CustomError = require("../support/errors/CustomError");
 
-
-
-// - Rocket.js must have a "_body" property which should be a PIXI.Sprite containing the main image of the rocket.
-// - Rocket.js must have a "_fire" property which should be a PIXI.Container which is the Fire
-// - Sun.js must have a "blast" property which should be a PIXI.Sprite which is the Sprite used for the filter
-// - Sun.js must have a "_glowTop" property which should be a PIXI.Sprite which makes the sun "glow"
-// - Sun.js must have a "_glowTop" property which has a blendMode of BLEND_MODES.SCREEN
-// - Sun.js must have a "_glowBottom" property which should be a PIXI.Sprite which makes the sun "glow"
-// - Sun.js must have a "_glowBottom" property which has a blendMode of BLEND_MODES.SCREEN
-// - The "viewport" inside of the scene must have a filter applied which uses the "blast" from the Sun
 // - The Rocket must rotate around the earth
 
 
@@ -81,6 +71,25 @@ context('task-20', () => {
     });
   });
 
+  it(`should have a Rocket which is a child of Earth`, () => {
+    cy.getPixi().then((PIXI) => {
+      const element = 'rocket';
+      cy.getPixiStage().getPixiElementByName(
+        element,
+        new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+      ).then((element) => {
+        const error = new CustomError({ 
+          issue: `${element} не e child na Earth`, 
+          tips: [
+            `Увери се, че създаваш и добавяш Rocket в Earth`,
+          ] 
+        });
+
+        expect(element.parent.name, error).to.eq('earth');
+      });
+    });
+  });
+
   it(`should have a Rocket with a _body property which is a PIXI.Sprite instance`, () => {
     cy.getPixi().then((PIXI) => {
       const element = 'rocket';
@@ -100,122 +109,115 @@ context('task-20', () => {
     });
   });
 
-  return;
+  it(`should a Sun which has a _blast property which is a PIXI.Sprite`, () => {
+    cy.getPixi().then((PIXI) => {
+      const element = 'sun';
+      cy.getPixiStage().getPixiElementByName(
+        element,
+        new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+      ).then((element) => {
+        const error = new CustomError({ 
+          issue: `${element}._blast не e PIXI.Sprite`, 
+          tips: [
+            `Увери се, че си закачил правилно sprite-a this._blast = new Sprite.from('sunBlast');`,
+          ] 
+        });
 
-  it(`should have a MagicHat.js which is a es6 class`, () => {
-    cy.log(`src/components/MagicHat.js`);
-    cy.task('readFileSync', { file: `src/components/MagicHat.js` }).then((data) => {
+        expect(element._blast instanceof PIXI.Sprite, error).to.be.true;
+      });
+    });
+  });
+
+  it(`should a Sun which has a _blast property which is used for a filter set on the viewport`, () => {
+    cy.getPixiApp().then((app) => {
+      const element = 'sun';
+      cy.getPixiStage().getPixiElementByName(
+        element,
+        new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+      ).then((element) => {
+        const error = new CustomError({ 
+          issue: `${element}._blast не e PIXI.Sprite`, 
+          tips: [
+            `Увери се, че си закачил правилно sprite-a this._blast = new Sprite.from('sunBlast');`,
+          ] 
+        });
+
+        expect(app.viewport.filters[0].maskSprite === element._blast, error).to.be.true;
+      });
+    });
+  });
+
+  it(`should have a Rocket with a _fire property which is a PIXI.Container instance`, () => {
+    cy.getPixi().then((PIXI) => {
+      const element = 'rocket';
+      cy.getPixiStage().getPixiElementByName(
+        element,
+        new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+      ).then((element) => {
+        const error = new CustomError({ 
+          issue: `${element}._fire не e инстанция на Fire`, 
+          tips: [
+            `Увери се, че си закачил правилно sprite-a this._fire = new Fire();`,
+          ] 
+        });
+
+        expect(element._fire instanceof PIXI.Container, error).to.be.true;
+      });
+    });
+  });
+
+  it(`should have a Rocket with a rotates around Earth`, () => {
+    const element = 'rocket';
+    cy.getPixiStage().getPixiElementByName(
+      element,
+      new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+    ).then((element) => {
       const error = new CustomError({ 
-        issue: `MagicHat.js не е es6 class`, 
+        issue: `Не е set-нат pivot на Rocket, което е най-лесния начин да постигнеш ефекта от demo-то`, 
         tips: [
-          `Увери се, че използваш es6 синтаксиса за създаване на класове "export default class MyClass..."`,
-          `Увери се, че класа ти се казва MagicHat`,
+          `this._rocket.pivot.set(-350, 0);`,
         ] 
       });
 
-      expect(data, error).to.include(`export default class MagicHat`);
+      expect(element.pivot.x, error).to.be.lessThan(0);
     });
   });
 
-  it(`should have a element on the stage with a 'name' of MagicHat.js which  in /components a PIXI.Container`, () => {
-    cy.getPixi().then((PIXI) => {
-      const element = 'magic-hat';
-      cy.getPixiStage().getPixiElementByName(
-        element,
-        new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
-      ).then((element) => {
-        const error = new CustomError({ 
-          issue: `${element} не PIXI.Container`, 
-          tips: [
-            `Увери се, че ${element} extend-ва PIXI.Container`,
-            `Увери се, че е set-нато правилното име на елемента`,
-          ] 
+  ['_glowTop', '_glowTop'].forEach((prop) => {
+    it(`should a Sun which has a ${prop} property which is a PIXI.Sprite`, () => {
+      cy.getPixi().then((PIXI) => {
+        const element = 'sun';
+        cy.getPixiStage().getPixiElementByName(
+          element,
+          new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+        ).then((element) => {
+          const error = new CustomError({ 
+            issue: `${prop} не e PIXI.Sprite`, 
+            tips: [
+              `Увери се, че си създал _${prop} и си го закачил правилно this._${prop} = new Sprite.from('sunGlow');`,
+            ] 
+          });
+  
+          expect(element[prop] instanceof PIXI.Sprite, error).to.be.true;
         });
-
-        expect(element instanceof PIXI.Container, error).to.be.true;
       });
     });
-  });
 
-  it(`should have a MagicHat with a _body property which is a PIXI.Sprite`, () => {
-    cy.getPixi().then((PIXI) => {
-      const element = 'magic-hat';
-      cy.getPixiStage().getPixiElementByName(
-        element,
-        new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
-      ).then((element) => {
-        const error = new CustomError({ 
-          issue: `${element}._body не e PIXI.Sprite`, 
-          tips: [
-            `Увери се, че си закачил правилно sprite-a this._body = new Sprite.from('hat');`,
-          ] 
-        });
-
-        expect(element._body instanceof PIXI.Sprite, error).to.be.true;
-      });
-    });
-  });
-
-  it(`should have a MagicHat with a _item property which is a PIXI.Text`, () => {
-    cy.getPixi().then((PIXI) => {
-      const element = 'magic-hat';
-      cy.getPixiStage().getPixiElementByName(
-        element,
-        new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
-      ).then((element) => {
-        const error = new CustomError({ 
-          issue: `${element}._item не e PIXI.Text`, 
-          tips: [
-            `Увери се, че си закачил правилно sprite-a this._item = new Text('', { fontSize: 200 });`,
-            `Увери се, че създаваш this._item само веднъж при инстанцирането на MagicHat`,
-          ] 
-        });
-
-        expect(element._item instanceof PIXI.Text, error).to.be.true;
-      });
-    });
-  });
-
-  it(`should have a MagicHat with a _item property which is a PIXI.Text which has a PIXI.Sprite mask`, () => {
-    cy.getPixi().then((PIXI) => {
-      const element = 'magic-hat';
-      cy.getPixiStage().getPixiElementByName(
-        element,
-        new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
-      ).then((element) => {
-        const error = new CustomError({ 
-          issue: `Липсва маската на _item`, 
-          tips: [
-            `Увери се, че си задал маската правилно this._item.mask = mask;`,
-            `Увери се, че маската е на сцената`,
-          ] 
-        });
-
-        expect(element._item.mask instanceof PIXI.Sprite, error).to.be.true;
-      });
-    });
-  });
-
-  it(`should have a MagicHat which when clicked pulls out a random emoji`, () => {
-    cy.getPixi().then((PIXI) => {
-      const element = 'magic-hat';
-      cy.getPixiStage().getPixiElementByName(
-        element,
-        new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
-      ).then((element) => {
-        const old = element._item.text;
-        element._body.emit('click');
-
-        const error = new CustomError({ 
-          issue: `Липсва маската на _item`, 
-          tips: [
-            `Увери се, че си задал маската правилно this._item.mask = mask;`,
-            `Увери се, че маската е на сцената`,
-          ] 
-        });
-
-        cy.wait(1000).then(() => {
-          expect(element._item.text, error).to.not.eq(old);
+    it(`should a Sun which has a ${prop} property which has a blendMode of BLEND_MODES.SCREEN`, () => {
+      cy.getPixi().then((PIXI) => {
+        const element = 'sun';
+        cy.getPixiStage().getPixiElementByName(
+          element,
+          new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element })  
+        ).then((element) => {
+          const error = new CustomError({ 
+            issue: `${prop} не е с правилния blendMode`, 
+            tips: [
+              `Увери се, че си set-нал правилния blendMode this._${prop}.blendMode = BLEND_MODES.SCREEN;`,
+            ] 
+          });
+  
+          expect(element[prop].blendMode, error).to.be.eq(PIXI.BLEND_MODES.SCREEN);
         });
       });
     });
