@@ -39,7 +39,7 @@ module.exports = (on, config) => {
       }
     },
 
-    async gitListFiles({ dir = './.tmp', ref = 'HEAD' } = {}) {
+    async gitListFiles({ dir = './.tmp', ref } = {}) {
       try {
         return await git.listFiles({
           fs,
@@ -74,14 +74,17 @@ module.exports = (on, config) => {
       }
     },
 
-    async gitClone({ url, dir }) {
-      await git.clone({
-        fs,
-        url,
-        dir,
-        http
-      });
-      return true;
+    async gitCheckout({ dir = './.tmp', ref = 'HEAD' } = {}) {
+      try {
+        return await git.listBranches({
+          fs,
+          dir,
+          dir, 
+          ref
+        })
+      } catch (error) {
+        throw new CustomError(CustomError.common.GIT_CHECKOUT, error);
+      }
     },
 
     async readFileSync({ dir = './.tmp', file } = {}) {

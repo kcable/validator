@@ -1,25 +1,26 @@
-const { exec } = require('child_process');
+const clone = require('./src/clone');
+const install = require('./src/install');
+const start = require('./src/start');
+const test = require('./src/test');
 
-if (!process.env.RUN) {
-  process.exit(0);
-}
+const env = process.env;
+const open = env.OPEN;
+const taskId = env.TASK_ID;
+const headed = env.HEADED ? '--headed' : '';
+const url = env.REPO_URL;
+const dir = `./.tmp`;
 
-const taskId = process.env.TASK_ID;
-const headed = process.env.HEADED ? '--headed' : '';
+if (!env.RUN) process.exit(0);
 
-console.log(`Running tests for task ${taskId}...`);
+(async () => {
+  console.log(`Initiating tests for task ${taskId}...`);
 
-const output = exec(
-  `npm run test -- ${headed} --spec "cypress/integration/task-${taskId}.js"`, {
-    env: process.env
-  }
-);
+  await clone({ dir, url });
+  await install({ dir });
 
-output.stdout.on('data', (data) => {
-  console.log(data);
-});
+  // Run the start script if the project has one
+  const package = require(`${dir}/package.json`);
+  if(package.scripts.start) await start({ dir });
 
-output.stderr.on('data', (data) => {
-  console.log(data);
-  process.exit(1);
-});
+  test({ taskId, headed, open });
+})();
