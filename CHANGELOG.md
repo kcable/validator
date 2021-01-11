@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://gitlab.com/booost/validator/compare/v1.1.0...v1.2.0) (2021-01-11)
+
+
+### Features
+
+* add more tests for task-20 ([749094c](https://gitlab.com/booost/validator/commit/749094cfb6600a8f3cd03b60309a0630fc89cec4))
+* add open parameter for easy development ([9e47e88](https://gitlab.com/booost/validator/commit/9e47e8867dc31cf03cf1de44e4fc4408322455e2))
+* add pixi commands and getters and change how tests are executed ([148efc6](https://gitlab.com/booost/validator/commit/148efc6ea051285d59fa861d8f7b609c58028778))
+* add PIXI error handling ([e72523f](https://gitlab.com/booost/validator/commit/e72523f67299a2b7ac9e14a08fd25a92ccff0177))
+* add start dev server ([e59ddba](https://gitlab.com/booost/validator/commit/e59ddbafe12a6de7c6ca15261547d4cc8f916b03))
+* add task-20 errors ([67afd68](https://gitlab.com/booost/validator/commit/67afd68743d752dc198bae93066a9af80cbcd074))
+* add task-24 tests WIP ([8ba57b4](https://gitlab.com/booost/validator/commit/8ba57b48d6971b28391b6c6a04afe7d1d2dac2e8))
+* add tests for task-19 ([a275d26](https://gitlab.com/booost/validator/commit/a275d26d45a9e302da77c98b011e2a8ec4ba09c1))
+* add tests for task-20 ([6f8db39](https://gitlab.com/booost/validator/commit/6f8db39c10eb63eb90d36151fb10ac51a4b34a79))
+* add tests for task-21 ([b72339a](https://gitlab.com/booost/validator/commit/b72339a5353ab558fc35fd3c87b9a0858bcc1615))
+* add tests for task-22 ([0e4c21c](https://gitlab.com/booost/validator/commit/0e4c21c846b136208a834a2ccbca301811945b75))
+* add tests for task-23 ([e26aafe](https://gitlab.com/booost/validator/commit/e26aafeb03eedb389b71a9f147b5ca6d6d197d16))
+
+
+### Bug Fixes
+
+* add other PIXI commands error handling ([9cc0091](https://gitlab.com/booost/validator/commit/9cc00917da19168d22b572b8ae504f5ab4f0539a))
+* add pre-test settings ([78fd8e0](https://gitlab.com/booost/validator/commit/78fd8e06a3082ba0816bb325673f2466b4481dd6))
+* finalize task-24 tests ([cba4ff6](https://gitlab.com/booost/validator/commit/cba4ff6156321736a5d8d6b85854f061913a604c))
+* git validation issue and add docs ([2b7f510](https://gitlab.com/booost/validator/commit/2b7f51036e00e3f2a18ea5a78805acf15acc5d8e))
+* refactor test running ([013496f](https://gitlab.com/booost/validator/commit/013496f8f2f4cd4eb53deea225945850c6d769e6))
+
 ## 1.1.0 (2020-12-29)
 
 
