@@ -1,11 +1,5 @@
 const CustomError = require("../support/errors/CustomError");
 
-// - MagicHat.js must have a "_item" property which is a PIXI Text. This is the element which shows the emojis.
-// - MagicHat.js must have a "_body" property which should be a PIXI.Sprite containing the main image of the hat.
-
-// - When the "_body" of the MagicHat is clicked a random emoji should be shown by the "_item"
-// - The magic hat must have a "name" property of 'magic-hat'
-
 context('task-20', () => {
   it('should have a PIXI app', () => {
     cy.visit('/');
