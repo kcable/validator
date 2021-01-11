@@ -2,7 +2,7 @@ const CustomError = require("../support/errors/CustomError");
 
 context('task-20', () => {
   it('should have a PIXI app', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
     cy.getPixiApp(new CustomError(CustomError.common.PIXI_APP_NOT_FOUND)).then((app) => {
       expect(app).to.exist;
     });
@@ -377,7 +377,7 @@ context('task-20', () => {
   });
 
   it(`should have a Button which when clicked shuffles the text property of Pokeball`, { retries: 5 }, () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
     cy.getPixiStage().getPixiElementByName(
       'button',
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'button' })  
@@ -404,7 +404,7 @@ context('task-20', () => {
   });
 
   it(`should have a Button which when clicked the 'open' method of Pokeball is called`, () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
     cy.getPixiStage().getPixiElementByName(
       'button',
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'button' })  
@@ -429,7 +429,7 @@ context('task-20', () => {
   });
 
   it(`should have a Pokeball shuffle which does not exceed more than 7 seconds`, () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
     cy.getPixiStage().getPixiElementByName(
       'button',
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'button' })  
@@ -455,7 +455,7 @@ context('task-20', () => {
   });
 
   it(`should have a Button which is hidden on click`, () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
     cy.getPixiStage().getPixiElementByName(
       'button',
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'button' })  
@@ -477,7 +477,7 @@ context('task-20', () => {
   });
 
   it(`should have a Button which reapears after the shuffle animation`, () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
     cy.getPixiStage().getPixiElementByName(
       'button',
       new CustomError(CustomError.common.PIXI_ELEMENT_NOT_FOUND, null, { element: 'button' })  

@@ -13,7 +13,7 @@ const files = [
 
 context('task-20', () => {
   it('should have a PIXI app', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
     cy.getPixiApp(new CustomError(CustomError.common.PIXI_APP_NOT_FOUND)).then((app) => {
       expect(app).to.exist;
     });
