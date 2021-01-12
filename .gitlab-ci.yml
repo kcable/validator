@@ -10,3 +10,10 @@ test:
   script:
     - npm i
     - node index.js
+  artifacts:
+    expire_in: 4 hours
+    when: always
+    paths:
+    - cypress/screenshots
+    - cypress/videos
+
