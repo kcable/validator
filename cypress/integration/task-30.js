@@ -2,12 +2,14 @@ const CustomError = require("../support/errors/CustomError");
 
 context('task-30', () => {
   it('should have JS app', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp(new CustomError(CustomError.common.JS_APP_NOT_FOUNT)).then(app => expect(app).to.exist);
   });
 
   it('should have data set in Application.js', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 
@@ -47,7 +49,8 @@ context('task-30', () => {
   });
 
   it('should have a data property called universe', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 
@@ -65,7 +68,8 @@ context('task-30', () => {
   });
 
   it('should have Starship object which have name property', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 
@@ -95,7 +99,8 @@ context('task-30', () => {
   });
 
   it('should have Starship object which have _consumables property', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 
@@ -113,7 +118,8 @@ context('task-30', () => {
   });
 
   it('should have Starship object which have _passengers property', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 
@@ -131,7 +137,8 @@ context('task-30', () => {
   });
 
   it('should have StarWarsUniverse with property called starships', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 
@@ -175,7 +182,8 @@ context('task-30', () => {
   });
 
   it('should have StarWarsUniverse.starships which should be an array', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 
@@ -193,7 +201,8 @@ context('task-30', () => {
   });
 
   it('should have a StarWarsUniverse.starships with eleven elements', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 
@@ -211,7 +220,8 @@ context('task-30', () => {
   });
 
   it('should have theBestStarship getter which is equal to Millennium Falcon', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 

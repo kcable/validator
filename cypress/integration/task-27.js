@@ -2,12 +2,13 @@ const CustomError = require("../support/errors/CustomError");
 
 context('task-27', () => {
   it('should have JS app', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
     cy.getJsApp(new CustomError(CustomError.common.JS_APP_NOT_FOUNT)).then(app => expect(app).to.exist);
   });
 
   it('should have data set in Application.js', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 
@@ -23,7 +24,8 @@ context('task-27', () => {
   });
 
   it('data count should be 60', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 
@@ -41,7 +43,8 @@ context('task-27', () => {
   });
 
   it('data planets should be array', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 
@@ -58,7 +61,8 @@ context('task-27', () => {
   });
 
   it('elements in planets property should be equal to count proeprty', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app).onEvent('app_ready');
 

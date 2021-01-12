@@ -2,12 +2,14 @@ const CustomError = require("../support/errors/CustomError");
 
 context('task-31', () => {
   it('should have JS app', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp(new CustomError(CustomError.common.JS_APP_NOT_FOUNT)).then(app => expect(app).to.exist);
   });
 
   it('should have data set in Application.js', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
 
       cy.wait(500).then(() => {
@@ -23,7 +25,8 @@ context('task-31', () => {
   });
 
   it('should have a data property called universe', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
 
       cy.wait(500).then(() => {
@@ -40,7 +43,8 @@ context('task-31', () => {
   });
 
   it('should have StarWarsUniverse with property called species', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
 
       cy.wait(500).then(() => {
@@ -57,7 +61,8 @@ context('task-31', () => {
   });
 
   it('should have StarWarsUniverse with property called species which is an Array', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
 
       console.log()
@@ -151,7 +156,7 @@ context('task-31', () => {
   });
 
   it('should have species_created event emitted, on every new species added to StarWarsUniverse.species', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
 
     cy.getJsApp().then(app => {
       app.data.universe.on('species_created', ({ speciesCount }) => {
@@ -170,7 +175,8 @@ context('task-31', () => {
   });
 
   it('should have 10 species in StarWarsUniverse.species', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app.data.universe).onEvent('max_species_reached');
 
@@ -189,26 +195,28 @@ context('task-31', () => {
   });
 
   it('should have species instances in StarWarsUniverse.species, with a name property', () => {
-    cy.visit('/');
-      cy.getJsApp().then(app => {
-        cy.wrap(app.data.universe).onEvent('max_species_reached');
+    cy.visit(Cypress.config('url'));
 
-        cy.wait(500).then(() => {
-          cy.log(app.data);
-          const species = app.data.universe.species[0];
+    cy.getJsApp().then(app => {
+      cy.wrap(app.data.universe).onEvent('max_species_reached');
 
-          expect(species.hasOwnProperty('name'), new CustomError({
-            issue: `Species класа няма property name`,
-            tips: [
-              `Увери се, че в Species.js се сетва property name`,
-            ]
-          })).to.be.true;
-        });
+      cy.wait(500).then(() => {
+        cy.log(app.data);
+        const species = app.data.universe.species[0];
+
+        expect(species.hasOwnProperty('name'), new CustomError({
+          issue: `Species класа няма property name`,
+          tips: [
+            `Увери се, че в Species.js се сетва property name`,
+          ]
+        })).to.be.true;
       });
+    });
   });
 
   it('should have species instances in StarWarsUniverse.species, with a classification property', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getJsApp().then(app => {
       cy.wrap(app.data.universe).onEvent('max_species_reached');
 
