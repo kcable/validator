@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://gitlab.com/booost/validator/compare/v1.2.0...v1.3.0) (2021-01-12)
+
+
+### Features
+
+* add tests for js-task-2 ([5662afd](https://gitlab.com/booost/validator/commit/5662afdc46ad5740852b334a39fe2bf7f6ae3e70))
+* add tests for js-task-31 ([9f4f042](https://gitlab.com/booost/validator/commit/9f4f042d834c84bb93f952abf1959d6b9e077724))
+* add tests for task 30 ([28ef1cb](https://gitlab.com/booost/validator/commit/28ef1cbffaff656e2088fde66a66cd7f4b1b34a5))
+* add tests for task-32 ([fc6189e](https://gitlab.com/booost/validator/commit/fc6189ec69770d286f43fa709c48c82f8b21f1b6))
+* add tests to js-task-27 ([4156162](https://gitlab.com/booost/validator/commit/41561620cac0221eb67212eac5000081e5ae8386))
+
+
+### Bug Fixes
+
+* error status not passed trough to gitlab ([397fdff](https://gitlab.com/booost/validator/commit/397fdff80c5df53b615a289257a968a3472bd008))
+* save cypress artifacts ([2166449](https://gitlab.com/booost/validator/commit/216644924fbc4ea8f8fb7617537c24a81bc06457))
+* test title ([a2c1733](https://gitlab.com/booost/validator/commit/a2c1733248d8297f148fa30d45d3f7cfb060cc3f))
+* tests path ([455d57f](https://gitlab.com/booost/validator/commit/455d57f620347d7a1ab19d744a1174ec144055b0))
+
 ## [1.2.0](https://gitlab.com/booost/validator/compare/v1.1.0...v1.2.0) (2021-01-11)
 
 
