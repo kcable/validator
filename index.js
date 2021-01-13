@@ -33,7 +33,7 @@ if (!env.RUN) process.exit(0);
     console.log(data);
 
     // We have to exit manually because the task doesn't do it itself
-    if(data.includes('(Run Finished)')) {
+    if(data.includes('Run Finished')) {
       process.exit(0);
     }
   });
