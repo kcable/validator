@@ -2,7 +2,8 @@ const CustomError = require("../support/errors/CustomError");
 
 context('task-26', () => {
   it('should have gsap instance', () => {
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.getGsap(CustomError.common.GSAP_APP_NOT_FOUND).then(module => {
       expect(module).to.exist;
     });
@@ -32,7 +33,7 @@ context('task-26', () => {
     const tweenId = 'expand';
     const hoverEvent = 'mouseenter';
 
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
 
     cy.get(firstMonster).then($monster => {
       cy.wrap($monster).trigger(hoverEvent);
@@ -62,7 +63,7 @@ context('task-26', () => {
     const tweenId = 'contract';
     const hoverEvent = 'mouseenter';
 
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
 
     cy.get(firstMonster).then($monster => {
       cy.wrap($monster).trigger(hoverEvent);
@@ -97,7 +98,8 @@ context('task-26', () => {
     const hoverInEvent = 'mouseenter';
     const hoverOutEvent = 'mouseleave';
 
-    cy.visit('/');
+    cy.visit(Cypress.config('url'));
+
     cy.get(firstMonster).then($monster => {
       cy.wrap($monster).trigger(hoverInEvent);
       cy.getGsap(CustomError.common.GSAP_APP_NOT_FOUND).then(async module => {
