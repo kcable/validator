@@ -40,7 +40,7 @@ if (!env.RUN) process.exit(0);
     });
 
     output.stderr.on('data', (data) => {
-      console.log(data);
+      console.error(data);
       process.exit(1);
     });
   } catch (error) {
