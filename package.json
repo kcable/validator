@@ -24,7 +24,7 @@
     }
   },
   "scripts": {
-    "test": "cypress run",
+    "test": "cypress run --browser chrome",
     "cypress:open": "cypress open",
     "release": "standard-version"
   },
