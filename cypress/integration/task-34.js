@@ -1,6 +1,6 @@
 const CustomError = require("../support/errors/CustomError");
 
-context('task-33', () => {
+context('task-34', () => {
   it('should have gsap instance', () => {
     cy.visit(Cypress.config('url'));
 
