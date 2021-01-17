@@ -88,7 +88,7 @@ context('task-28', () => {
                 'Провери дали правилно си задал параметрите за tween-ване',
                 'Провери дали преместваш .ufo елементът със зададените в условието px'
               ]
-            })).to.be.equal(515);
+            })).to.be.equal(495);
           });
         });
       });
@@ -119,8 +119,8 @@ context('task-28', () => {
 
   });
 
-  it('should have opacity set to beam, after the beam_showed event is emitted', () => {
-    const beam = '.beam';
+  it('should have opacity set to beampTopElement, after the beam_showed event is emitted', () => {
+    const beam = '#beam-top';
 
     cy.visit(Cypress.config('url'));
 
@@ -134,7 +134,35 @@ context('task-28', () => {
             const opacity = Number($beam[0].style.opacity);
 
             expect(opacity, new CustomError({
-              issue: 'След емитване на евента beam_showed, opacity-то на .beam елементът не съвпада със зададеното в условието',
+              issue: 'След емитване на евента beam_showed, opacity-то на #beam-top елементът не съвпада със зададеното в условието',
+              tips: [
+                'Провери дали туийнваш правилните елементи',
+                'Провери дали правилно си задал параметрите за tween-ване, опоменати в условието',
+                'Увери се, че emit-ваш на правилното място евентът beam_showed'
+              ]
+            })).to.eq(0.6);
+          })
+        });
+      })
+    })
+  });
+
+  it('should have opacity set to beampBottomElement, after the beam_showed event is emitted', () => {
+    const beam = '#beam-bottom';
+
+    cy.visit(Cypress.config('url'));
+
+    cy.getGsapApp().then(app => {
+      cy.wait(500).then(() => {
+
+        cy.wrap(app.data.animation.saucer).onEvent('beam_showed');
+
+        cy.wait(500).then(() => {
+          cy.get(beam).then($beam => {
+            const opacity = Number($beam[0].style.opacity);
+
+            expect(opacity, new CustomError({
+              issue: 'След емитване на евента beam_showed, opacity-то на #beam-bottom елементът не съвпада със зададеното в условието',
               tips: [
                 'Провери дали туийнваш правилните елементи',
                 'Провери дали правилно си задал параметрите за tween-ване, опоменати в условието',
@@ -183,7 +211,7 @@ context('task-28', () => {
               `Увери се, че се emit-ва евент abduct_completed, след като се tween-е .cow елемнта`,
               `Увери се, че .cow елементът се tween-ва съз зададените по условие параметри`,
             ]
-          })).to.include('-540px');
+          })).to.include('-365px');
         });
       })
     })
