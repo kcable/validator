@@ -143,7 +143,7 @@ context('task-28', () => {
 
   });
 
-  it('should have opacity set to beampTopElement, after the beam_showed event is emitted', () => {
+  it('should have opacity set to beamTopElement, after the beam_showed event is emitted', () => {
     const beam = '#beam-top';
 
     cy.visit(Cypress.config('url'));
@@ -171,7 +171,7 @@ context('task-28', () => {
     })
   });
 
-  it('should have opacity set to beampBottomElement, after the beam_showed event is emitted', () => {
+  it('should have opacity set to beamBottomElement, after the beam_showed event is emitted', () => {
     const beam = '#beam-bottom';
 
     cy.visit(Cypress.config('url'));
@@ -235,7 +235,7 @@ context('task-28', () => {
               `Увери се, че се emit-ва евент abduct_completed, след като се tween-е .cow елемнта`,
               `Увери се, че .cow елементът се tween-ва съз зададените по условие параметри`,
             ]
-          })).to.include('-365px');
+          })).to.include('-390px');
         });
       })
     })
