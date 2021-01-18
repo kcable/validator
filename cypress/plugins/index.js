@@ -28,7 +28,10 @@ module.exports = (on, config) => {
   on('before:browser:launch', (browser = {}, args) => {
     if (browser.name === 'chrome') {
       const newArgs = args.filter(arg => arg !== '--disable-gpu')
-      newArgs.push('--ignore-gpu-blacklist')
+      newArgs.push(
+        '--ignore-gpu-blacklist', // https://github.com/cypress-io/cypress/issues/1194
+        '--disable-dev-shm-usage' // https://github.com/cypress-io/cypress/issues/6857
+      )
       return newArgs;
     }
   });
