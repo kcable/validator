@@ -107,7 +107,7 @@ context('task-32', () => {
   it('should have a StarWarsUniverse.js which extends eventemitter3', () => {
     cy.task('readFileSync', { file: 'src/app/custom/StarWarsUniverse.js'}).then((data) => {
       expect(data, new CustomError({
-        issue: 'StarWarsUniverse.js не е es6 class',
+        issue: 'StarWarsUniverse.js не extend-ва eventemitter3',
         tips: [
           'Увери се, че използваш es6 синтаксиса за създаване на класове',
           'Увери се, че класа ти се казва StarWarsUniverse',
@@ -120,7 +120,7 @@ context('task-32', () => {
   it('should have a Planet.js which extends eventemitter3', () => {
     cy.task('readFileSync', { file: 'src/app/custom/Planet.js'}).then((data) => {
       expect(data, new CustomError({
-        issue: 'Planet.js не е es6 class',
+        issue: 'Planet.js не extend-ва eventemitter3',
         tips: [
           'Увери се, че използваш es6 синтаксиса за създаване на класове',
           'Увери се, че класа ти се казва Planet',
