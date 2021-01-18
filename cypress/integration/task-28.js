@@ -95,7 +95,7 @@ context('task-28', () => {
     });
   });
 
-  it('should have a tween with id showBeam when flyIn tween is completed', () => {
+  it('should have a tween with id showTopBeam when flyIn tween is completed', () => {
     cy.visit(Cypress.config('url'));
     cy.getGsapApp().then(app => {
       cy.wait(500).then(() => {
@@ -103,13 +103,37 @@ context('task-28', () => {
 
         cy.wait(100).then(() => {
           cy.getGsap(CustomError.common.GSAP_APP_NOT_FOUND).then(module => {
-            const isShowBeamTween = module.getById('showBeam').vars.id ==='showBeam';
+            const isShowBeamTween = module.getById('showTopBeam').vars.id ==='showTopBeam';
 
             expect(isShowBeamTween, new CustomError({
-              issue: 'След приключване на flyIn tween-а, не е започнал tween с id showBeam',
+              issue: 'След приключване на flyIn tween-а, не е започнал tween с id showBTopBeam',
               tips: [
                 `Увери се, че се dispatch-ва евент FLY_IN, когато приключи tween-а с id flyIn`,
-                `Увери се, че tween-а с id showBeam започва веднага, след като приключи tween-a с id flyIn`
+                `Увери се, че tween-а с id showTopBeam започва веднага, след като приключи tween-a с id flyIn`
+              ]
+            })).to.be.true;
+          });
+        });
+      });
+    });
+
+  });
+
+  it('should have a tween with id showBottomBeam when flyIn tween is completed', () => {
+    cy.visit(Cypress.config('url'));
+    cy.getGsapApp().then(app => {
+      cy.wait(500).then(() => {
+        cy.wrap(app.data.animation.saucer).onEvent('fly_in');
+
+        cy.wait(100).then(() => {
+          cy.getGsap(CustomError.common.GSAP_APP_NOT_FOUND).then(module => {
+            const isShowBeamTween = module.getById('showBottomBeam').vars.id ==='showBottomBeam';
+
+            expect(isShowBeamTween, new CustomError({
+              issue: 'След приключване на flyIn tween-а, не е започнал tween с id showBottomBeam',
+              tips: [
+                `Увери се, че се dispatch-ва евент FLY_IN, когато приключи tween-а с id flyIn`,
+                `Увери се, че tween-а с id showBottomBeam започва веднага, след като приключи tween-a с id flyIn`
               ]
             })).to.be.true;
           });
