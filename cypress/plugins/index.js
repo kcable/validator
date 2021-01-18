@@ -25,11 +25,11 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
-  on('before:browser:launch', (browser, launchOptions) => {
+  on('before:browser:launch', (browser = {}, args) => {
     if (browser.name === 'chrome') {
-      const newArgs = launchOptions.args.filter(arg => arg !== '--disable-gpu');
-
-      launchOptions.args.push('--ignore-gpu-blacklist', ...newArgs);
+      const newArgs = args.filter(arg => arg !== '--disable-gpu')
+      newArgs.push('--ignore-gpu-blacklist')
+      return newArgs;
     }
   });
 
