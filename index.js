@@ -18,8 +18,8 @@ if (!env.RUN) process.exit(0);
     console.log(`Initiating tests for task ${taskId}...`);
     console.log(` DIRECTORY: ${dir}`);
 
-    await clone({ dir, url });
-    await install({ dir });
+    // await clone({ dir, url });
+    // await install({ dir });
 
     // Run the start script if the project has one
     const package = require(`${dir}/package.json`);
