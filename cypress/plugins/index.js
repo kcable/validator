@@ -25,14 +25,11 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
-  on('before:browser:launch', (browser = {}, args) => {
+  on('before:browser:launch', (browser, launchOptions) => {
     if (browser.name === 'chrome') {
-      const newArgs = args.filter(arg => arg !== '--disable-gpu')
-      newArgs.push(
-        '--ignore-gpu-blacklist', // https://github.com/cypress-io/cypress/issues/1194
-        '--disable-dev-shm-usage' // https://github.com/cypress-io/cypress/issues/6857
-      )
-      return newArgs;
+      const newArgs = launchOptions.args.filter(arg => arg !== '--disable-gpu');
+
+      launchOptions.args.push('--ignore-gpu-blacklist', ...newArgs);
     }
   });
 
