@@ -30,18 +30,12 @@ if (!env.RUN) process.exit(0);
     const cmd = open ? `npm run cypress:open` : `npm run test -- ${headed} --spec "cypress/integration/task-${taskId}.js"`;
     const output = exec(cmd, { env: process.env });
 
-    output.stdout.on('data', (data) => {
-      console.log(data);
-
-      // We have to exit manually because the task doesn't do it itself
-      if(data.includes('Run Finished')) {
-        process.exit(0);
-      }
+    output.on('close', (code) => {
+      process.exit(code);
     });
 
-    output.stderr.on('data', (data) => {
-      console.error(data);
-      process.exit(1);
+    output.stdout.on('data', (data) => {
+      console.log(data);
     });
   } catch (error) {
     console.error(error);
