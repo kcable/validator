@@ -392,6 +392,7 @@ context('task-20', () => {
             `Увери се, че се променя стойноста на текста (.text) поне 50 пъти`,
           ] 
         });
+        cy.wait(500);
 
         let value = pokeball.text.text;
         button.emit('click');
