@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://gitlab.com/booost/validator/compare/v1.3.0...v1.4.0) (2021-01-19)
+
+
+### Features
+
+* add tests for task-26 ([b552a7c](https://gitlab.com/booost/validator/commit/b552a7c61f4dac53b45f852f508088c16ced5e80))
+* add tests for task-28 ([eaf6410](https://gitlab.com/booost/validator/commit/eaf64105fd2eb81564381e9bf7f9668c54f5b307))
+* add tests for task-33 ([c05b66c](https://gitlab.com/booost/validator/commit/c05b66cb454e9f66dc06a744a68d5ea86f1a2a8e))
+* add tests for task-34 ([1c3bc80](https://gitlab.com/booost/validator/commit/1c3bc80ced849c54b4f06ab3e5db1681e9b582ac))
+* add tests for task-34 ([e943f33](https://gitlab.com/booost/validator/commit/e943f3317516145146fd33497650b38455ac57c9))
+* adjust tests to new assets ([0cfdbb0](https://gitlab.com/booost/validator/commit/0cfdbb0a716b204d9975cac13c50a9d760c276ac))
+
+
+### Bug Fixes
+
+* always passing 401 unauthorized repos ([7353ece](https://gitlab.com/booost/validator/commit/7353ece54a863e1854ab6ac11ae0204b1ac2f4e6))
+* broken WebGL Chrome config on Linux ([a591488](https://gitlab.com/booost/validator/commit/a5914884aa9187ef721de2dc1bbd3a8f83579ea5))
+* change wrong test ID ([973f150](https://gitlab.com/booost/validator/commit/973f1502f190f34d1fa993078ddc0ad1aa4f4f54))
+* disable video generation on test ([ef7b565](https://gitlab.com/booost/validator/commit/ef7b5656cd9970ba102864dba1851456c99057c1))
+* failing chrome tests ([a1ace4f](https://gitlab.com/booost/validator/commit/a1ace4f3da81fcdea793bfe9d6e4504394b725c6))
+* not cloning and installing user project ([40730de](https://gitlab.com/booost/validator/commit/40730dea216dbeb260e14144e046d92656c69695))
+* potential fix for cypress hang ([748c611](https://gitlab.com/booost/validator/commit/748c611faf25ed1d7ce9762a898492f50b3fdaab))
+* returning wrong status code ([ba60e7a](https://gitlab.com/booost/validator/commit/ba60e7af08ae24b16e28c510257e4badfb435ab9))
+* run finished matching ([d9c1693](https://gitlab.com/booost/validator/commit/d9c16939319d005b5ac5df275254f2ed2651809a))
+* task 28 test ([649ce63](https://gitlab.com/booost/validator/commit/649ce6350c9d47a0161a68f3ba22f3bde60d1e51))
+* task-28 validation ([cd21b3a](https://gitlab.com/booost/validator/commit/cd21b3ab3fdcfe83bda152554d97ec8a3fef2951))
+* wait for initial value before clicking the button ([b59bf28](https://gitlab.com/booost/validator/commit/b59bf28d6b0230797847290a27c76dbd0d22eeab))
+* WebGL not working on Linux ([7a3cf0e](https://gitlab.com/booost/validator/commit/7a3cf0ecb5f66c444d1be4ecefeded69d38fda12))
+
 ## [1.3.0](https://gitlab.com/booost/validator/compare/v1.2.0...v1.3.0) (2021-01-12)
 
 
