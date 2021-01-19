@@ -5,7 +5,7 @@ const rmfr = require('rmfr');
 const CustomError = require('../cypress/support/errors/CustomError');
 
 /**
- * Clones the project the tests will be cloned against 
+ * Clones the project the tests will be cloned against
  * @param {String} url - The url of the git repository
  * @param {String} dir - The directory where the repository will be cloned
  */
@@ -14,7 +14,7 @@ module.exports = async ({ url, dir = './' }) => {
     console.log(`Cleaning up the directory ${dir}...`);
     await rmfr(dir);
 
-    console.log(`Cloning repository ${url}...`);
+    console.log(`Cloning repository...`);
     await git.clone({ fs, url, dir, http });
 
   } catch (error) {
