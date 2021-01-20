@@ -101,7 +101,7 @@ context('task-28', () => {
       cy.wait(500).then(() => {
         cy.wrap(app.data.animation.saucer).onEvent('fly_in');
 
-        cy.wait(100).then(() => {
+        cy.wait(500).then(() => {
           cy.getGsap(CustomError.common.GSAP_APP_NOT_FOUND).then(module => {
             const isShowBeamTween = module.getById('showTopBeam').vars.id ==='showTopBeam';
 
@@ -125,7 +125,7 @@ context('task-28', () => {
       cy.wait(500).then(() => {
         cy.wrap(app.data.animation.saucer).onEvent('fly_in');
 
-        cy.wait(100).then(() => {
+        cy.wait(500).then(() => {
           cy.getGsap(CustomError.common.GSAP_APP_NOT_FOUND).then(module => {
             const isShowBeamTween = module.getById('showBottomBeam').vars.id ==='showBottomBeam';
 
