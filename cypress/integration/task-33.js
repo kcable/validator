@@ -74,12 +74,18 @@ context('task-33', () => {
   it('should have a timeline with 19 tweens in it', () => {
     cy.visit(Cypress.config('url'));
 
+    const ids = [ 'backWheel1', 'backWheel2', 'backWheelBack1', 'backWheelBack2',
+    'frontGroup', 'frontWheel1', 'frontWheel2', 'frontWheelsBack', 'truckBtnScaleUp',
+    'truckBtnScaleDown', 'containerParts', 'container', 'shippedLabel', 'truckMovement',
+    'listUp', 'listDown', 'listItem0', 'listItem1', 'listItem2' ];
+
     cy.getGsapApp(CustomError.common.GSAP_APP_NOT_FOUND).then(app => {
 
       cy.wait(500).then(() => {
-        const tweensCount = app.data.animation._tl.getChildren().length;
+        const tweens = app.data.animation._tl.getChildren();
+        const activeTweens = tweens.filter(tween => ids.some(id => id === tween.vars.id)).length;
 
-        expect(tweensCount, new CustomError({
+        expect(activeTweens, new CustomError({
           issue:'Timeline-а няма нужния брой tween-ове',
           tips: [
             'Провери, дали на timeline-а се сетват нужния брой tween-ове',

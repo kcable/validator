@@ -133,7 +133,7 @@ context('task-35', () => {
               expect(timeline.isActive(), new CustomError({
                 issue:'Timeline-а не се се деактивира при натискане на scaleBtn и след това stopBtn',
                 tips: [
-                  'Провери, спираш правилно timeline-a, когато се натисне stopBtn, след като timeline-а е бил активен от scaleBtn елемента',
+                  'Провери, дали спираш правилно timeline-a, когато се натисне stopBtn, след като timeline-а е бил активен от scaleBtn елемента',
                 ]
               })).to.be.false;
              });
@@ -167,7 +167,7 @@ context('task-35', () => {
               expect(timeline.isActive(), new CustomError({
                 issue:'Timeline-а не се се деактивира при натискане на positionBtn и след това stopBtn',
                 tips: [
-                  'Провери, спираш правилно timeline-a, когато се натисне stopBtn, след като timeline-а е бил активен от positionBtn елемента',
+                  'Провери, дали спираш правилно timeline-a, когато се натисне stopBtn, след като timeline-а е бил активен от positionBtn елемента',
                 ]
               })).to.be.false;
              });
@@ -205,6 +205,7 @@ context('task-35', () => {
                 tips: [
                   'Провери, дали tween-a в timeline-a се сменя, при настискане на scaleBtn и след това positionBtn',
                   'Провери, дали правилно задаваш id-то на tween-a на timeline-a, зададени в условието',
+                  'Провери, дали не създаваш нов timeline, при промяна на анимацията'
                 ]
               })).to.exist;
              });
@@ -242,6 +243,7 @@ context('task-35', () => {
                 tips: [
                   'Провери, дали tween-a в timeline-a се сменя, при настискане на positionBtn и след това scaleBtn',
                   'Провери, дали правилно задаваш id-то на tween-a на timeline-a, зададени в условието',
+                  'Провери, дали не създаваш нов timeline, при промяна на анимацията'
                 ]
               })).to.exist;
              });
