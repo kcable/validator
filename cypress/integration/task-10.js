@@ -11,7 +11,7 @@ context(`task-10`, () => {
         new CustomError({ 
           issue: 'Липсва merge commit-a от dev към master', 
           tips: [
-            'Увери се, че наистина си fork-нал проекта описан в task-a"',
+            'Увери се, че наистина си import-нал проекта описан в task-a"',
           ] 
         })
       ).to.include.members(["Merge", "branch"]);
@@ -21,7 +21,7 @@ context(`task-10`, () => {
         new CustomError({ 
           issue: 'Липсва merge commit-a от dev към master', 
           tips: [
-            'Увери се, че наистина си fork-нал проекта описан в task-a"',
+            'Увери се, че наистина си import-нал проекта описан в task-a"',
           ] 
         })
       ).to.eq(2);

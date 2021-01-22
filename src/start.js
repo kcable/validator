@@ -18,7 +18,7 @@ module.exports = async ({ dir = './' }) => {
     throw new CustomError({
       issue: `Не успяхме да изпълним "npm install" на repository-то`,
       tips: [
-        'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2',
+        'Увери се, че си направил import-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2',
         'Увери се, че съществува package.json',
         'Увери се, че съществува package-lock.json',
       ]
@@ -37,7 +37,7 @@ module.exports = async ({ dir = './' }) => {
     throw new CustomError({
       issue: `Не успяхме да изпълним "npm install" на repository-то`,
       tips: [
-        'Увери се, че си направил fork-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2',
+        'Увери се, че си направил import-а правилно и прочети повече тук: https://app.booost.bg/courses/5/steps/31?trackId=2',
         'Увери се, че съществува package.json',
         'Увери се, че съществува package-lock.json',
       ]
