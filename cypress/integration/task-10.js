@@ -3,6 +3,9 @@ const CustomError = require("../support/errors/CustomError");
 context(`task-10`, () => {
 
   it(`should have a merge commit from dev into master`, () => {
+    // Checkout the master branch in case the default branch is dev
+    cy.task('gitCheckout', { ref: 'origin/master' }); 
+    
     cy.task('gitLog').then((data) => {
       cy.log('Git Log', data);
 
