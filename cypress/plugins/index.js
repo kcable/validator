@@ -86,12 +86,13 @@ module.exports = (on, config) => {
 
     async gitCheckout({ dir = './.tmp', ref = 'HEAD' } = {}) {
       try {
-        return await git.listBranches({
+        await git.checkout({
           fs,
           dir,
-          dir,
           ref
-        })
+        });
+
+        return { dir, ref }
       } catch (error) {
         throw new CustomError(CustomError.common.GIT_CHECKOUT, error);
       }
