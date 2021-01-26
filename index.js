@@ -4,9 +4,20 @@ const clone = require('./src/clone');
 const install = require('./src/install');
 const start = require('./src/start');
 
+const noVideoTasks = [
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+];
+
 const env = process.env;
 const open = env.OPEN;
 const taskId = env.TASK_ID;
+const video = noVideoTasks.includes(parseInt(taskId)) ? '--config-file no-video.cypress.json' : '';
 const headed = env.HEADED ? '--headed' : '';
 const url = env.REPO_URL;
 const dir = `./.tmp`;
@@ -27,7 +38,7 @@ if (!env.RUN) process.exit(0);
 
     console.log(`Starting to run tests...`);
     // The Cypress task is a bit weird that's why we're using outside of primises
-    const cmd = open ? `npm run cypress:open` : `npm run test -- ${headed} --spec "cypress/integration/task-${taskId}.js"`;
+    const cmd = open ? `npm run cypress:open` : `npm run test -- ${headed} ${video} --spec "cypress/integration/task-${taskId}.js"`;
     const output = exec(cmd, { env: process.env });
 
     output.on('close', (code) => {
