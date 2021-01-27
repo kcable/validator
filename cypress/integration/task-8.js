@@ -3,7 +3,7 @@ const CustomError = require("../support/errors/CustomError");
 context(`task-8`, () => {
 
   it(`should have a merge commit from dev into master`, () => {
-    cy.task('gitLog').then((data) => {
+    cy.task('gitLog', { ref: 'origin/master' }).then((data) => {
       cy.log('Git Log', data);
 
       expect(
